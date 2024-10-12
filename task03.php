@@ -19,21 +19,21 @@ class Animal {
         echo "Habitat: " . $this->habitat . "\n";
     }
 
-    // Menambahkan hewan baru ke dalam array $animals
+
     public static function store($hewan, $suara, $habitat) {
         $newAnimal = new Animal($hewan, $suara, $habitat);
         array_push(self::$animals, $newAnimal); // Menyimpan hewan ke dalam array
         echo "Hewan $hewan berhasil ditambahkan.\n";
     }
 
-    // Menampilkan semua hewan yang ada di array $animals
+
     public static function index() {
         foreach (self::$animals as $index => $animal) {
             echo "[$index] Hewan: " . $animal->hewan . ", Suara: " . $animal->suara . ", Habitat: " . $animal->habitat . "\n";
         }
     }
 
-    // Menghapus hewan berdasarkan indeks
+
     public static function destroy($index) {
         if (isset(self::$animals[$index])) {
             unset(self::$animals[$index]);
@@ -43,7 +43,7 @@ class Animal {
         }
     }
 
-    // Memperbarui data hewan berdasarkan indeks
+
     public static function update($index, $hewan, $suara, $habitat) {
         if (isset(self::$animals[$index])) {
             self::$animals[$index]->hewan = $hewan;
@@ -56,7 +56,7 @@ class Animal {
     }
 }
 
-// Menambahkan beberapa hewan ke dalam daftar
+
 Animal::store('ikan hiu', 'blububblubub', 'di laut');
 Animal::store('singa', 'rawrr', 'di darat');
 Animal::store('kucing', 'miyaww', 'di darat');
