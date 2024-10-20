@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnimalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/user', function(){                 //get: nampilin data
+Route::get('/user', function(){                
     return "Hallo saya Farida";
 });                      
 
-Route::get('/users', [UserController::class], 'index');                 //get: nampilin data
-                    
+
 Route::get('/animals', [AnimalController::class, 'index']);
 Route::post('/animals', [AnimalController::class, 'store']);
-Route::put('/animals/{index}', [AnimalController::class, 'update']);
-Route::delete('/animals/{index}', [AnimalController::class,'destroy']);
+Route::put('/animals/{id}', [AnimalController::class, 'update']);
+Route::delete('/animals/{id}', [AnimalController::class, 'destroy']);

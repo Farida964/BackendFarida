@@ -6,68 +6,63 @@ use Illuminate\Http\Request;
 
 class AnimalController extends Controller
 {
-    // Property animals sebagai array
-    public $animals = [];
 
-    // Constructor untuk mengisi data awal
+    public $animals = ['kumbang', 'kelinci', 'paus','ubur-ubur'];
     public function __construct()
     {
-        $this->animals = ['Ayam', 'Ikan'];
+    
     }
 
-    // Method index untuk menampilkan data animals
     public function index()
     {
-        return response()->json([
-            'message' => 'Menampilkan seluruh hewan',
-            'data' => $this->animals
-        ]);
+        echo "--Menampilkan data animals--";
+        foreach ($this->animals as $animal) {
+            echo "\n";
+            echo "- " . $animal;
+        }
+        echo "\n";
     }
 
-    // Method store untuk menambahkan hewan baru
     public function store(Request $request)
     {
-        $newAnimal = $request->input('animal');
-        array_push($this->animals, $newAnimal);
-
-        return response()->json([
-            'message' => "Hewan baru ($newAnimal) ditambahkan",
-            'data' => $this->animals
-        ]);
+        array_push($this->animals, $request->nama);
+        echo "Menambahkan hewan baru: $request->nama \n --Menampilkan data animals--";
+        foreach ($this->animals as $animal){
+            echo "\n";
+            echo "- " . $animal;
+        }
+        
     }
 
-    // Method update untuk mengupdate hewan berdasarkan index
-    public function update(Request $request, $index)
+    public function update(Request $request, $id)
     {
-        $updatedAnimal = $request->input('animal');
-        if (isset($this->animals[$index])) {
-            $this->animals[$index] = $updatedAnimal;
-            return response()->json([
-                'message' => "Hewan di index $index diupdate",
-                'data' => $this->animals
-            ]);
+        if (isset($this->animals[$id])) {
+            $this->animals[$id] = $request->nama;
+            echo "Mengupdate data hewan: $request->nama (id: $id)";
         } else {
-            return response()->json([
-                'message' => 'Index tidak ditemukan',
-            ], 404);
+            echo "Hewan dengan id $id tidak ditemukan";
+        }
+        echo "--Menampilkan data animals--";
+        foreach ($this->animals as $animal){
+            echo "\n";
+            echo "- " . $animal;
         }
     }
 
-    // Method destroy untuk menghapus hewan berdasarkan index
-    public function destroy($index)
+    public function destroy($id)
     {
-        if (isset($this->animals[$index])) {
-            unset($this->animals[$index]);
-            // Reindex array
-            $this->animals = array_values($this->animals);
-            return response()->json([
-                'message' => "Hewan di index $index dihapus",
-                'data' => $this->animals
-            ]);
+        if (isset($this->animals[$id])) {
+            unset($this->animals[$id]);
+            echo "Menghapus data hewan (id: $id)";
+            echo "\n";
         } else {
-            return response()->json([
-                'message' => 'Index tidak ditemukan',
-            ], 404);
+            echo "!Hewan dengan id $id tidak ditemukan!";
+        }
+        echo "\n";
+        echo "--Menampilkan data animals--";
+        foreach ($this->animals as $animal){
+            echo "\n";
+            echo "- " . $animal;
         }
     }
 }
