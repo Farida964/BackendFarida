@@ -44,14 +44,14 @@ class StudentController extends Controller
 
         if ($student) {
             $data = [
-                'message' => 'Get detail student',
+                'message' => 'Dapatkan detail student',
                 'data' => $student,
             ];
 
             return response()->jason($data, 200);
         } else {
             $data = [
-                'message' => 'Student not found',
+                'message' => 'Data Student tidak ditemukan',
             ];
 
             return response()->jason($data, 404);
