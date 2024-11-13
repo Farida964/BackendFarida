@@ -27,23 +27,20 @@ class BeritaController extends Controller
 
     }
 
+    
     public function store(Request $request)
     {
-
-    //validasi otomatis
+        //validasi otomatis
         $validateData = $request->validate([
-            'id' => 'required|integer',
-            'title' => 'required|string|unique:beritas,title',
-            'author' => 'required|string|unique:beritas,author',
+            'title' => 'required|string',
+            'author' => 'required|string',
             'description' => 'required|string',
             'content' => 'required|string',
             'url' => 'required|string',
             'url_image' => 'required|string',
-            'publish_at' => 'required|date',
+            'published_at' => 'required|date',
             'category' => 'required|string',
-            'timestamp' => 'required|date',
         ]);
-
 
         $beritas = Berita::create($validateData);
 
@@ -53,9 +50,6 @@ class BeritaController extends Controller
         ];
 
         return response()->json($data, 201);
-
-        $beritas = Berita::create($request->all());
-
     }
 
     public function show($id)
@@ -84,7 +78,6 @@ class BeritaController extends Controller
         $beritas = Berita::find($id);
         if ($beritas) {
             $input = [
-                'id' => $request->id ?? $beritas->id,
                 'title' => $request->title ?? $beritas->title,
                 'author' => $request->author ?? $beritas->author,
                 'description' => $request->description ?? $beritas->description,
@@ -93,7 +86,6 @@ class BeritaController extends Controller
                 'url_image' => $request->url_image ?? $beritas->url_image,
                 'published_at' => $request->published_at ?? $beritas->published_at,
                 'category' => $request->category ?? $beritas->category,
-                'timestamp' => $request->timestamp ?? $beritas->timestamp,
             ];
 
             $beritas->update($input);
@@ -163,13 +155,13 @@ class BeritaController extends Controller
 
     public function getSportResource()
     {
-        $beritas = DB::table('berita')
+        $beritas = DB::table('beritas')
             ->where('category', 'sport')
             ->get();
 
         if ($beritas->isNotEmpty()) {
             return response()->json([
-                'message' => 'Get Sport Resources',
+                'message' => 'Get sport resource',
                 'data' => $beritas
             ], 200);
         } else {
@@ -181,13 +173,13 @@ class BeritaController extends Controller
 
     public function getFinanceResource()
     {
-        $beritas = DB::table('berita')
+        $beritas = DB::table('beritas')
             ->where('category', 'finance')
             ->get();
 
         if ($beritas->isNotEmpty()) {
             return response()->json([
-                'message' => 'Get Finance Resources',
+                'message' => 'Get finance resource',
                 'data' => $beritas
             ], 200);
         } else {
@@ -199,13 +191,13 @@ class BeritaController extends Controller
 
     public function getAutomotiveResource()
     {
-        $beritas = DB::table('berita')
+        $beritas = DB::table('beritas')
             ->where('category', 'automotive')
             ->get();
 
         if ($beritas->isNotEmpty()) {
             return response()->json([
-                'message' => 'Get Automotive Resources',
+                'message' => 'Get automotive resource',
                 'data' => $beritas
             ], 200);
         } else {

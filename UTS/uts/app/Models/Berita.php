@@ -11,6 +11,6 @@ class Berita extends Model
 
     protected $table = "beritas";
 
-    protected $fillable = ['id', 'title', 'author', 'description', 'content', 'url', 'url_image', 'published_at', 'category', 'timestamp'];
+    protected $fillable = ['title', 'author', 'description', 'content', 'url', 'url_image', 'published_at', 'category'];
 }
 
