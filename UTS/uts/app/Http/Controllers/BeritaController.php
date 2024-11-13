@@ -137,74 +137,68 @@ class BeritaController extends Controller
     public function search(Request $request)
     {
         $title = $request->query('title');
-        $beritas = DB::table('berita')
-            ->where('title', 'LIKE', '%' . $title . '%')
-            ->get();
-
+    
         if ($beritas->isNotEmpty()) {
             return response()->json([
-                'message' => 'Get searched resourch',
+                'message' => 'Get searched resource',
+                'total' => $beritas->count(),  // Adding total count of the results
                 'data' => $beritas
             ], 200);
         } else {
             return response()->json([
                 'message' => 'Resource not found',
+                'total' => 0, 
             ], 404);
         }
     }
 
     public function getSportResource()
     {
-        $beritas = DB::table('beritas')
-            ->where('category', 'sport')
-            ->get();
-
         if ($beritas->isNotEmpty()) {
+
             return response()->json([
                 'message' => 'Get sport resource',
+                'total' => $beritas->count(), 
                 'data' => $beritas
             ], 200);
         } else {
             return response()->json([
                 'message' => 'No sport resources found',
+                'total' => 0, 
             ], 404);
         }
     }
 
     public function getFinanceResource()
     {
-        $beritas = DB::table('beritas')
-            ->where('category', 'finance')
-            ->get();
-
         if ($beritas->isNotEmpty()) {
             return response()->json([
                 'message' => 'Get finance resource',
+                'total' => $beritas->count(), 
                 'data' => $beritas
             ], 200);
         } else {
             return response()->json([
                 'message' => 'No finance resources found',
+                'total' => 0, 
             ], 404);
         }
     }
 
     public function getAutomotiveResource()
     {
-        $beritas = DB::table('beritas')
-            ->where('category', 'automotive')
-            ->get();
-
         if ($beritas->isNotEmpty()) {
             return response()->json([
                 'message' => 'Get automotive resource',
+                'total' => $beritas->count(),  
                 'data' => $beritas
             ], 200);
         } else {
             return response()->json([
                 'message' => 'No automotive resources found',
+                'total' => 0, 
             ], 404);
         }
     }
 
-}
+ }

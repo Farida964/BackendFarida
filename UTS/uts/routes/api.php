@@ -27,6 +27,6 @@ Route::put('/news/{id}', [BeritaController::class, 'update']);
 Route::delete('/news/{id}', [BeritaController::class, 'destroy']);
 
 
-Route::get('/news/category/sport', [BeritaController::class, 'index']);
-Route::get('/news/category/finance', [BeritaController::class, 'index']);
-Route::get('/news/category/automotive', [BeritaController::class, 'index']);
+Route::get('/news/category/sport', [BeritaController::class, 'getSportResource']);
+Route::get('/news/category/finance', [BeritaController::class, 'getFinanceResource']);
+Route::get('/news/category/automotive', [BeritaController::class, 'getAutomotiveResource']);
