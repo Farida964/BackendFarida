@@ -12,3 +12,5 @@ else {
 }
 
 console.log('Nilai saya : ' +  grade);
+
+console.log(`nilai saya: ${nilai}`);
