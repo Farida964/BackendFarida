@@ -1,5 +1,3 @@
-// TODO 3: Import data students dari folder data/students.js
-// code here
 
 // Membuat Class StudentController
 class StudentController {
