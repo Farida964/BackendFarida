@@ -1,44 +1,32 @@
 const Student = require("../models/Student");
 
 class StudentController {
-  // Mendapatkan seluruh resource
- // Menampilkan semua students
-async index(req, res) {
-    const students = await Student.all();
+
+  async index(req, res) {
+    const students = await Student.all(); 
 
     const data = {
       message: "Menampilkan semua students",
-      data: students,
-    };
+      data: students,  
+  };
 
-    res.status(200).json(data);
-
-    res.status(500).json({
-      message: "Gagal mengambil data students",
-      error: error.message,
-    });
+    res.json(data); 
 }
 
-// Menambahkan data student
-async store(req, res) {
 
-    const { nama, nim, email, jurusan } = req.body;
+  async store(req, res) {
+    const { nama, nim, email, jurusan } = req.body; 
 
     const students = await Student.create({ nama, nim, email, jurusan });
 
     const data = {
       message: `Menambahkan data mahasiswa: ${students.nama}`,
-      data: students,
-    };
+      data: students, 
+  };
 
-    res.status(201).json(data); // 201 Created
-
-    res.status(500).json({
-      message: "Gagal menambahkan data mahasiswa",
-      error: error.message,
-    });
-
+    res.json(data);
 }
+
 
 
   // Update data student (belum diimplementasikan)
