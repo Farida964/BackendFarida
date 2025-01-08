@@ -23,13 +23,12 @@ static async create(data) {
     });
   });
 
-  // Refaktor promise 2: get data by id
+  // refaktor promise 2
   const student = this.find(id);
   return student;
 }
 
 
-// mencari data berdasarkan id
 static async find(id) {
   return new Promise((resolve, reject) => {
       const sql = "SELECT * FROM students WHERE id = ?";
